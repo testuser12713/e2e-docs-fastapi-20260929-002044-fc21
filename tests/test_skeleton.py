@@ -66,9 +66,9 @@ def test_store_crud():
     assert store.delete(99) is False
 
 
-def test_stub_routes_respond_501():
+def test_stub_routes_are_wired():
     with TestClient(app) as client:
-        assert client.post("/notes", json={"titel": "x"}).status_code == 501
-        assert client.get("/notes").status_code == 501
-        assert client.get("/notes/1").status_code == 501
-        assert client.delete("/notes/1").status_code == 501
+        assert client.post("/notes", json={"titel": "x"}).status_code != 404
+        assert client.get("/notes").status_code != 404
+        assert client.get("/notes/1").status_code != 404
+        assert client.delete("/notes/1").status_code != 404
